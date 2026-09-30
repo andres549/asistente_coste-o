@@ -1,0 +1,198 @@
+[
+  {
+    "id": "malecon",
+    "name": "Gran Malecón del Río",
+    "locationLabel": "📍 Barranquilla, Colombia",
+    "badge": "⭐ Imperdible",
+    "image": "./assets/places/malecon.jpg",
+    "shortDescription": "Más de 5 kilómetros a la orilla del río, ideal para caminar, hacer deporte, disfrutar de la brisa, buena comida y atardeceres increíbles.",
+    "stats": [
+      { "icon": "🏃", "value": "5+ km", "label": "De extensión" },
+      { "icon": "🕒", "value": "Abierto", "label": "Todo el día" },
+      { "icon": "📍", "value": "Av. del Río", "label": "Sector Puerta de Oro" }
+    ],
+    "gallery": [
+      "./assets/places/malecon_gallery_1.jpg",
+      "./assets/places/malecon_gallery_2.jpg",
+      "./assets/places/malecon_gallery_3.jpg",
+      "./assets/places/malecon_gallery_4.jpg"
+    ],
+    "locationName": "Gran Malecón del Río",
+    "locationSub": "Barranquilla, Atlántico",
+    "mapsUrl": "https://maps.google.com/?q=Gran+Malecon+del+Rio+Barranquilla",
+    "nearbyPlaces": [
+      { "id": "ventana_mundo", "name": "Ventana al Mundo", "distance": "2.5 km", "image": "./assets/places/nearby_ventana.jpg" },
+      { "id": "el_prado", "name": "Museo del Caribe", "distance": "4.1 km", "image": "./assets/places/nearby_museo.jpg" },
+      { "id": "la_cueva", "name": "Plaza de la Paz", "distance": "4.8 km", "image": "./assets/places/nearby_plaza.jpg" }
+    ],
+    "maniTip": "¡Cuadro, no te vayas sin pedirte un raspao con lecherita en el Malecón mientras miras caer el sol sobre el río a las 5:30 de la tarde!"
+  },
+  {
+    "id": "ventana_mundo",
+    "name": "Monumento Ventana al Mundo",
+    "locationLabel": "📍 Barranquilla, Colombia",
+    "badge": "⭐ Monumento Top",
+    "image": "./assets/places/ventana_mundo.jpg",
+    "shortDescription": "Impresionante torre de 48 metros con cristales multicolor que refleja la luz del Caribe y rinde homenaje al espíritu progresista de Curramba.",
+    "stats": [
+      { "icon": "🏢", "value": "48 m", "label": "De altura" },
+      { "icon": "🕒", "value": "Abierto", "label": "24 horas" },
+      { "icon": "📍", "value": "Vía 40", "label": "Rotonda Circunvalar" }
+    ],
+    "gallery": [
+      "./assets/places/ventana_mundo.jpg",
+      "./assets/places/malecon.jpg",
+      "./assets/places/aleta_tiburon.jpg",
+      "./assets/places/el_prado.jpg"
+    ],
+    "locationName": "Ventana al Mundo",
+    "locationSub": "Rotonda Vía 40, Barranquilla",
+    "mapsUrl": "https://maps.google.com/?q=Ventana+al+Mundo+Barranquilla",
+    "nearbyPlaces": [
+      { "id": "malecon", "name": "Gran Malecón", "distance": "2.5 km", "image": "./assets/places/malecon.jpg" },
+      { "id": "aleta_tiburon", "name": "Aleta del Tiburón", "distance": "3.8 km", "image": "./assets/places/aleta_tiburon.jpg" },
+      { "id": "bocas_ceniza", "name": "Bocas de Ceniza", "distance": "5.2 km", "image": "./assets/places/bocas_ceniza.jpg" }
+    ],
+    "maniTip": "¡Mani, ponte la pinta y ve a tomarte la foto clásica en la base! De noche las luces de colores se prenden y aquello parece un carnaval de vidrio."
+  },
+  {
+    "id": "aleta_tiburon",
+    "name": "Ventana de Campeones (Aleta del Tiburón)",
+    "locationLabel": "📍 Barranquilla, Colombia",
+    "badge": "🦈 Pasión Junior",
+    "image": "./assets/places/aleta_tiburon.jpg",
+    "shortDescription": "Hito monumental de 33 metros con la gloria del Junior de Barranquilla, paseo de leyendas y vista imponente sobre el Río Magdalena.",
+    "stats": [
+      { "icon": "⭐", "value": "33 m", "label": "De altura" },
+      { "icon": "🕒", "value": "Abierto", "label": "Todo el día" },
+      { "icon": "📍", "value": "La Loma", "label": "Isla La Loma" }
+    ],
+    "gallery": [
+      "./assets/places/aleta_tiburon.jpg",
+      "./assets/places/malecon.jpg",
+      "./assets/places/malecon_sunset.jpg",
+      "./assets/places/ventana_mundo.jpg"
+    ],
+    "locationName": "Aleta del Tiburón",
+    "locationSub": "Isla La Loma, Gran Malecón",
+    "mapsUrl": "https://maps.google.com/?q=Ventana+de+Campeones+Aleta+del+Tiburon+Barranquilla",
+    "nearbyPlaces": [
+      { "id": "malecon", "name": "Gran Malecón", "distance": "1.2 km", "image": "./assets/places/malecon.jpg" },
+      { "id": "ventana_mundo", "name": "Ventana al Mundo", "distance": "3.8 km", "image": "./assets/places/ventana_mundo.jpg" },
+      { "id": "el_prado", "name": "Barrio El Prado", "distance": "3.5 km", "image": "./assets/places/el_prado.jpg" }
+    ],
+    "maniTip": "¡Ajá cuadro, aquí se siente el ¡Junior tu papá! con toda la fuerza! Camina por los bustos de las leyendas rojiblancas y tómate la foto."
+  },
+  {
+    "id": "el_prado",
+    "name": "Barrio El Prado",
+    "locationLabel": "📍 Barranquilla, Colombia",
+    "badge": "🏛️ Patrimonio",
+    "image": "./assets/places/el_prado.jpg",
+    "shortDescription": "Primer barrio residencial moderno de Sudamérica, con mansiones republicanas de ensueño, robles morados y el histórico Hotel El Prado.",
+    "stats": [
+      { "icon": "🌳", "value": "1920", "label": "Año fundación" },
+      { "icon": "🕒", "value": "Libre", "label": "Paseo peatonal" },
+      { "icon": "📍", "value": "Cra. 54", "label": "Calles 58 a 75" }
+    ],
+    "gallery": [
+      "./assets/places/el_prado.jpg",
+      "./assets/places/la_cueva.jpg",
+      "./assets/places/malecon.jpg",
+      "./assets/places/muelle_puerto.jpg"
+    ],
+    "locationName": "Barrio El Prado",
+    "locationSub": "Localidad Norte - Centro Histórico",
+    "mapsUrl": "https://maps.google.com/?q=Barrio+El+Prado+Barranquilla",
+    "nearbyPlaces": [
+      { "id": "la_cueva", "name": "La Cueva", "distance": "1.8 km", "image": "./assets/places/la_cueva.jpg" },
+      { "id": "malecon", "name": "Gran Malecón", "distance": "4.1 km", "image": "./assets/places/malecon.jpg" },
+      { "id": "ventana_mundo", "name": "Ventana al Mundo", "distance": "5.6 km", "image": "./assets/places/ventana_mundo.jpg" }
+    ],
+    "maniTip": "Caminar por la Carrera 54 en la tardecita bajo la sombra de los robles es una gozadera, mi llave. ¡Pasa por el Hotel El Prado!"
+  },
+  {
+    "id": "muelle_puerto",
+    "name": "Muelle de Puerto Colombia",
+    "locationLabel": "📍 Atlántico, Colombia",
+    "badge": "🌊 Playa & Mar",
+    "image": "./assets/places/muelle_puerto.jpg",
+    "shortDescription": "Histórico muelle marítimo inaugurado en 1893, puerta del progreso y migración caribeña, con plaza de inmigrantes, playa y brisa oceánica.",
+    "stats": [
+      { "icon": "⚓", "value": "1893", "label": "Inauguración" },
+      { "icon": "🕒", "value": "Abierto", "label": "Todo el día" },
+      { "icon": "📍", "value": "Malecón", "label": "Puerto Colombia" }
+    ],
+    "gallery": [
+      "./assets/places/muelle_puerto.jpg",
+      "./assets/places/malecon_sunset.jpg",
+      "./assets/places/bocas_ceniza.jpg",
+      "./assets/places/malecon.jpg"
+    ],
+    "locationName": "Muelle de Puerto Colombia",
+    "locationSub": "Malecón de Puerto Colombia",
+    "mapsUrl": "https://maps.google.com/?q=Muelle+de+Puerto+Colombia",
+    "nearbyPlaces": [
+      { "id": "malecon", "name": "Gran Malecón", "distance": "15 km", "image": "./assets/places/malecon.jpg" },
+      { "id": "ventana_mundo", "name": "Ventana al Mundo", "distance": "12 km", "image": "./assets/places/ventana_mundo.jpg" },
+      { "id": "bocas_ceniza", "name": "Bocas de Ceniza", "distance": "18 km", "image": "./assets/places/bocas_ceniza.jpg" }
+    ],
+    "maniTip": "¡Epa mani! Cuadra el paseo el fin de semana: te vienes a Puerto Colombia, te clavas un buen pescao frito con patacón y miras caer el sol sobre el mar."
+  },
+  {
+    "id": "la_cueva",
+    "name": "Restaurante Bar La Cueva",
+    "locationLabel": "📍 Barranquilla, Colombia",
+    "badge": "📚 Leyenda Bohemia",
+    "image": "./assets/places/la_cueva.jpg",
+    "shortDescription": "Santuario bohemio del Grupo de Barranquilla donde tertuliaban Gabriel García Márquez, Obregón y Cepeda Samudio. Arte, historia y alta cocina.",
+    "stats": [
+      { "icon": "📖", "value": "1954", "label": "Tertulias de Gabo" },
+      { "icon": "🕒", "value": "Tarde/Noche", "label": "12pm - 11pm" },
+      { "icon": "📍", "value": "Cra. 43", "label": "Barrio Boston" }
+    ],
+    "gallery": [
+      "./assets/places/la_cueva.jpg",
+      "./assets/places/el_prado.jpg",
+      "./assets/places/malecon.jpg",
+      "./assets/places/aleta_tiburon.jpg"
+    ],
+    "locationName": "La Cueva",
+    "locationSub": "Carrera 43 # 59-03, Boston",
+    "mapsUrl": "https://maps.google.com/?q=Restaurante+Bar+La+Cueva+Barranquilla",
+    "nearbyPlaces": [
+      { "id": "el_prado", "name": "Barrio El Prado", "distance": "1.8 km", "image": "./assets/places/el_prado.jpg" },
+      { "id": "malecon", "name": "Gran Malecón", "distance": "4.8 km", "image": "./assets/places/malecon.jpg" },
+      { "id": "ventana_mundo", "name": "Ventana al Mundo", "distance": "6.2 km", "image": "./assets/places/ventana_mundo.jpg" }
+    ],
+    "maniTip": "Si te gusta la buena charla y el arte, este es el templo bohemio de Curramba. ¡Pídete una cazuela de mariscos y un trago con buena música!"
+  },
+  {
+    "id": "bocas_ceniza",
+    "name": "Bocas de Ceniza",
+    "locationLabel": "📍 Barranquilla, Colombia",
+    "badge": "🚢 Mar y Río",
+    "image": "./assets/places/bocas_ceniza.jpg",
+    "shortDescription": "El punto mágico donde las aguas del Río Magdalena se funden con el Océano Atlántico. Tajamares gigantes, tren artesanal y pesca tradicional.",
+    "stats": [
+      { "icon": "🌊", "value": "Mar & Río", "label": "Punto de choque" },
+      { "icon": "🕒", "value": "Diurno", "label": "Paseo en tren" },
+      { "icon": "📍", "value": "Las Flores", "label": "Tajamar Occidental" }
+    ],
+    "gallery": [
+      "./assets/places/bocas_ceniza.jpg",
+      "./assets/places/malecon_sunset.jpg",
+      "./assets/places/malecon.jpg",
+      "./assets/places/muelle_puerto.jpg"
+    ],
+    "locationName": "Bocas de Ceniza",
+    "locationSub": "Tajamar Occidental, Las Flores",
+    "mapsUrl": "https://maps.google.com/?q=Bocas+de+Ceniza+Barranquilla",
+    "nearbyPlaces": [
+      { "id": "malecon", "name": "Gran Malecón", "distance": "6.5 km", "image": "./assets/places/malecon.jpg" },
+      { "id": "ventana_mundo", "name": "Ventana al Mundo", "distance": "5.2 km", "image": "./assets/places/ventana_mundo.jpg" },
+      { "id": "muelle_puerto", "name": "Puerto Colombia", "distance": "18 km", "image": "./assets/places/muelle_puerto.jpg" }
+    ],
+    "maniTip": "¡Cipote plan aventurero, cuadro! Montarse en el trencito artesanal sobre los rieles del tajamar es algo que no se te olvida nunca."
+  }
+]

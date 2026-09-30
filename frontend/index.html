@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Costeño AI - Asistente Virtual 3D de Barranquilla</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Importmap para Three.js ES Modules -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Lienzo WebGL 3D -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Pantalla de Carga Inicial -->
+  <div id="loading-overlay">
+    <div class="loading-box">
+      <div class="spinner"></div>
+      <h2 class="loading-title">Costeño AI</h2>
+      <p id="loading-text">Cargando experiencia 3D de Barranquilla...</p>
+    </div>
+  </div>
+
+  <!-- Barra Superior / Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <div class="logo-pill">
+        <div class="logo-icon-wrap">🌴</div>
+        <div class="logo-text">
+          <span class="logo-title">Costeño AI</span>
+          <span class="logo-sub">Barranquilla, Colombia</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <button type="button" id="memory-btn" class="header-pill-btn">
+        <span class="btn-icon">📖</span> Memoria y Cultura
+      </button>
+      <button type="button" id="gestures-btn" class="header-pill-btn">
+        <span class="btn-icon">✨</span> Gestos 3D
+      </button>
+    </div>
+  </header>
+
+  <!-- Banner Flotante de Desbloqueo de Audio (Autoplay Browser Policy) -->
+  <div id="audio-unlock-banner" class="audio-banner" role="button" tabindex="0">
+    <div class="audio-banner-pulse">🔊</div>
+    <div class="audio-banner-text">
+      <strong>¡Haz clic para activar la voz de Mani!</strong>
+      <span>Toca aquí para escuchar a tu asistente costeño</span>
+    </div>
+    <button type="button" id="close-audio-banner" class="audio-banner-close" aria-label="Cerrar">&times;</button>
+  </div>
+
+  <!-- Barra Flotante Ocultable de Pruebas de Gestos 3D (Toggle con ✨ Gestos 3D) -->
+  <div id="gestures-popup" class="gestures-toolbar">
+    <span class="gestures-title">Gestos 3D:</span>
+    <button type="button" class="test-action-btn" data-action="wave" data-emotion="happy" title="Saludar">👋 Saludar</button>
+    <button type="button" class="test-action-btn" data-action="explain" data-emotion="happy" title="Explicar">🗣️ Explicar</button>
+    <button type="button" class="test-action-btn" data-action="laugh" data-emotion="laugh" title="Reír">😄 Reír</button>
+    <button type="button" class="test-action-btn" data-action="point" data-emotion="excited" title="Señalar">👉 Señalar</button>
+    <button type="button" class="test-action-btn" data-action="think" data-emotion="thinking" title="Pensar">🤔 Pensar</button>
+  </div>
+
+  <!-- Menú Lateral Flotante Izquierdo (7 Píldoras con Lugares activo en amarillo) -->
+  <nav class="side-nav-menu">
+    <button type="button" class="nav-pill" data-category="inicio" data-query="¡Epa mani!">
+      <span class="nav-icon">🏠</span> <span class="nav-text">Inicio</span>
+    </button>
+    <button type="button" class="nav-pill" data-category="barranquilla" data-query="Háblame de la historia de Barranquilla">
+      <span class="nav-icon">📍</span> <span class="nav-text">Barranquilla</span>
+    </button>
+    <button type="button" class="nav-pill" data-category="comida" data-query="¿Cuáles son los platos típicos de Barranquilla?">
+      <span class="nav-icon">🍴</span> <span class="nav-text">Comida</span>
+    </button>
+    <button type="button" class="nav-pill" data-category="carnaval" data-query="Explícame qué es el Carnaval de Barranquilla">
+      <span class="nav-icon">🎭</span> <span class="nav-text">Carnaval</span>
+    </button>
+    <button type="button" class="nav-pill active-yellow" data-category="lugares" data-place="malecon">
+      <span class="nav-icon">🗺️</span> <span class="nav-text">Lugares</span>
+    </button>
+    <button type="button" class="nav-pill" data-category="cultura" data-query="Cuéntame sobre la cultura costeña y sus costumbres">
+      <span class="nav-icon">🌴</span> <span class="nav-text">Cultura</span>
+    </button>
+    <button type="button" class="nav-pill" data-category="dudas" data-query="¿Qué preguntas te puedo hacer, mani?">
+      <span class="nav-icon">❓</span> <span class="nav-text">Más dudas</span>
+    </button>
+  </nav>
+
+  <!-- Burbuja de Diálogo Flotante 3D (Se muestra al hablar y se oculta automáticamente al terminar) -->
+  <div id="dialogue-bubble" class="speech-bubble">
+    <div class="bubble-body">
+      <div class="bubble-header-row">
+        <h3 id="bubble-heading" class="bubble-title">¡Epa, <span class="highlight-gold">mani!</span></h3>
+        <div class="bubble-waveform" id="bubble-waveform" title="Audio activo">
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+          <span class="wave-bar"></span>
+        </div>
+      </div>
+      <p id="dialogue-text">Te muestro los mejores lugares de Barranquilla y sus alrededores. Playas, parques, monumentos, zonas turísticas y más. 🌴</p>
+      <span id="typing-indicator" class="typing-cursor"></span>
+    </div>
+    <div class="bubble-tail-left"></div>
+  </div>
+
+  <!-- Zona Inferior: Cápsula de Chat Flotante y 4 Píldoras de Categoría -->
+  <footer class="app-bottom-dock">
+    <div class="chat-capsule-wrapper">
+      <form id="chat-form" class="chat-capsule-form">
+        <button type="button" id="mic-btn" class="capsule-circle-btn mic-btn" title="Hablar por micrófono">
+          <svg class="mic-svg" viewBox="0 0 24 24" width="18" height="18">
+            <path fill="currentColor" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+            <path fill="currentColor" d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+          </svg>
+        </button>
+
+        <div class="capsule-input-wrap">
+          <span class="golden-wave-icon" aria-hidden="true">ılılı</span>
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Háblame, mani... ¿qué quieres conocer?"
+            autocomplete="off"
+          />
+        </div>
+
+        <button type="button" id="sparkle-btn" class="capsule-circle-btn sparkle-btn" title="Sugerencia de Mani">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z"/></svg>
+        </button>
+
+        <button type="submit" id="send-btn" class="capsule-send-btn" title="Enviar">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </form>
+
+      <!-- 4 Píldoras de Categorías Rápidas centradas debajo del chat -->
+      <div class="bottom-category-pills">
+        <button type="button" class="sub-category-pill" data-query="¿Cuáles son los platos típicos de Barranquilla?">
+          <span class="sub-pill-icon">🍴</span> Comida
+        </button>
+        <button type="button" class="sub-category-pill" data-query="Explícame qué es el Carnaval de Barranquilla">
+          <span class="sub-pill-icon">🎭</span> Carnaval
+        </button>
+        <button type="button" class="sub-category-pill active-pill" data-place="malecon">
+          <span class="sub-pill-icon">📍</span> Lugares
+        </button>
+        <button type="button" class="sub-category-pill" data-query="¿Cuáles son las mejores playas cerca de Barranquilla?">
+          <span class="sub-pill-icon">🌴</span> Playas
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Botón Flotante para reabrir el panel de lugares cuando está cerrado -->
+  <button type="button" id="open-place-panel-pill" class="floating-place-launcher" title="Abrir ficha del lugar">
+    <span class="launcher-icon">🗺️</span>
+    <span class="launcher-text">Ver Lugar</span>
+  </button>
+
+  <!-- Panel Derecho Dedicado de Información Turística ("Gran Malecón del Río") -->
+  <aside id="place-detail-panel" class="place-detail-panel visible" aria-label="Información del sitio">
+    <!-- Hero Image con botones flotantes y badges -->
+    <div class="panel-hero-container">
+      <img id="panel-hero-img" class="panel-hero-img" src="./assets/places/malecon.jpg" alt="Gran Malecón del Río">
+      <div class="panel-hero-actions">
+        <button type="button" class="hero-circle-btn fav-btn" id="fav-btn" title="Guardar en favoritos" aria-label="Favorito">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </button>
+        <button type="button" class="hero-circle-btn share-btn" id="share-btn" title="Compartir lugar" aria-label="Compartir">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34 3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+        </button>
+        <button type="button" class="hero-circle-btn close-panel-btn" id="close-place-panel-btn" title="Cerrar ficha del lugar" aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="panel-content-body">
+      <!-- Ubicación y Badge -->
+      <div class="panel-meta-row">
+        <span class="panel-location-badge" id="panel-location-badge">
+          <span class="pin-icon">📍</span> <span id="panel-location-text">Barranquilla, Colombia</span>
+        </span>
+        <span class="panel-status-badge" id="panel-status-badge">⭐ Imperdible</span>
+      </div>
+
+      <!-- Título y Descripción -->
+      <h2 class="panel-title" id="panel-place-title">Gran Malecón del Río</h2>
+      <p class="panel-description" id="panel-place-description">
+        Más de 5 kilómetros a la orilla del río, ideal para caminar, hacer deporte, disfrutar de la brisa, buena comida y atardeceres increíbles.
+      </p>
+
+      <!-- 3 Stats Badges -->
+      <div class="panel-stats-row" id="panel-stats-row">
+        <div class="stat-pill-card">
+          <span class="stat-pill-icon" id="stat-icon-0">🏃</span>
+          <div class="stat-pill-text">
+            <strong id="stat-val-0">5+ km</strong>
+            <span id="stat-lbl-0">De extensión</span>
+          </div>
+        </div>
+        <div class="stat-pill-card">
+          <span class="stat-pill-icon" id="stat-icon-1">🕒</span>
+          <div class="stat-pill-text">
+            <strong id="stat-val-1">Abierto</strong>
+            <span id="stat-lbl-1">Todo el día</span>
+          </div>
+        </div>
+        <div class="stat-pill-card">
+          <span class="stat-pill-icon" id="stat-icon-2">📍</span>
+          <div class="stat-pill-text">
+            <strong id="stat-val-2">Av. del Río</strong>
+            <span id="stat-lbl-2">Sector Puerta de Oro</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Galería de Fotos -->
+      <div class="panel-section">
+        <div class="panel-section-header">
+          <h3 class="section-title">Galería de fotos</h3>
+          <button type="button" class="view-all-link" id="view-all-photos-btn">Ver todas</button>
+        </div>
+        <div class="panel-gallery-grid" id="panel-gallery-grid">
+          <!-- Inyectado dinámicamente con 4 fotos -->
+        </div>
+      </div>
+
+      <!-- Ubicación y Botón de Google Maps -->
+      <div class="panel-section">
+        <h3 class="section-title">Ubicación</h3>
+        <div class="panel-location-box">
+          <div class="map-label-group">
+            <div class="map-pin-circle">📍</div>
+            <div class="map-text-group">
+              <strong id="panel-map-name">Gran Malecón del Río</strong>
+              <span id="panel-map-sub">Barranquilla, Atlántico</span>
+            </div>
+          </div>
+          <a id="panel-maps-btn" href="https://maps.google.com/?q=Gran+Malecon+del+Rio+Barranquilla" target="_blank" rel="noopener noreferrer" class="google-maps-btn">
+            <span class="maps-icon">🗺️</span>
+            <span>Abrir en Google Maps</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Lugares Cercanos -->
+      <div class="panel-section">
+        <h3 class="section-title">Lugares cercanos</h3>
+        <div class="nearby-places-row" id="nearby-places-row">
+          <!-- Inyectado dinámicamente con 3 lugares cercanos -->
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Modal de Memoria y Aprendizaje RAG -->
+  <div id="memory-modal" class="modal-overlay">
+
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h2>📖 Memoria y Cultura de Barranquilla</h2>
+        <button type="button" id="close-memory-btn" class="close-btn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <p class="modal-desc">
+          Mani cuenta con una base de conocimiento cultural sobre Barranquilla y puede aprender información nueva autorizada por ti en tiempo real.
+        </p>
+
+        <h3>Enseñar algo nuevo a Mani:</h3>
+        <form id="teach-form" class="teach-form">
+          <input
+            type="text"
+            id="teach-input"
+            placeholder="Ejemplo: 'En Barranquilla el mejor sancocho lo venden en La Cueva'..."
+            required
+          />
+          <button type="submit" class="btn-primary">Grabar en Memoria</button>
+        </form>
+
+        <h3 class="mt-4">Datos aprendidos de conversaciones:</h3>
+        <ul id="memory-list" class="memory-items">
+          <li class="empty">Cargando memoria...</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js?v=2.3"></script>
+</body>
+</html>

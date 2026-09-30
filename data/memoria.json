@@ -1,0 +1,70 @@
+{
+  "personaje": {
+    "nombre": "Mani Costeño",
+    "origen": "Barranquilla, Colombia",
+    "ocupacion": "Asistente Virtual 3D y Anfitrión Caribeño"
+  },
+  "aprendizajes_usuario": [
+    {
+      "id": "learn_1790303324631",
+      "informacion": "que: En Barranquilla la cumbia se baila con velas encendidas en la rueda de cumbia.",
+      "fecha": "2026-09-25T02:28:44.631Z",
+      "fuente": "Usuario en vivo"
+    },
+    {
+      "id": "learn_1790303371197",
+      "informacion": ": En Barranquilla la cumbia se baila con velas encendidas en la rueda de cumbia.",
+      "fecha": "2026-09-25T02:29:31.197Z",
+      "fuente": "Usuario en vivo"
+    },
+    {
+      "id": "learn_1790629372949",
+      "informacion": "palabra tradicional come mnd",
+      "fecha": "2026-09-28T21:02:52.950Z",
+      "fuente": "Panel de Conocimiento"
+    },
+    {
+      "id": "learn_1790629372959",
+      "informacion": "palabra tradicional come mnd",
+      "fecha": "2026-09-28T21:02:52.959Z",
+      "fuente": "Usuario en vivo"
+    },
+    {
+      "id": "learn_1790629402316",
+      "informacion": "palabra tradicional de la costa come monda perro h",
+      "fecha": "2026-09-28T21:03:22.316Z",
+      "fuente": "Panel de Conocimiento"
+    },
+    {
+      "id": "learn_1790629402326",
+      "informacion": "palabra tradicional de la costa come monda perro h",
+      "fecha": "2026-09-28T21:03:22.326Z",
+      "fuente": "Usuario en vivo"
+    },
+    {
+      "id": "learn_1790629464203",
+      "informacion": "AURA es cule parche puro riwi en esta monda",
+      "fecha": "2026-09-28T21:04:24.203Z",
+      "fuente": "Panel de Conocimiento"
+    },
+    {
+      "id": "learn_1790629464212",
+      "informacion": "AURA es cule parche puro riwi en esta monda",
+      "fecha": "2026-09-28T21:04:24.212Z",
+      "fuente": "Usuario en vivo"
+    },
+    {
+      "id": "learn_1790629805847",
+      "informacion": "daniel es la monda",
+      "fecha": "2026-09-28T21:10:05.847Z",
+      "fuente": "Panel de Conocimiento"
+    },
+    {
+      "id": "learn_1790629805858",
+      "informacion": "daniel es la monda",
+      "fecha": "2026-09-28T21:10:05.858Z",
+      "fuente": "Usuario en vivo"
+    }
+  ],
+  "preferencias_usuario": {}
+}
